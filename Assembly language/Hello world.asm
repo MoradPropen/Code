@@ -1,29 +1,15 @@
-.MODEL SMALL
-.STACK 100H
-.DATA
-NUM DB 49
-CHAR DB 'A'
-MSG DB "HELLO WORLD $"
+DATA SEGMENT
+    MSG DB "HELLO WORLD$"
+DATA ENDS
 
-.CODE
-MAIN PROC
-   
-    MOV AX,@DATA
+CODE SEGMENT
+    ASSUME CS:CODE,DS:DATA
+START:    MOV AX,DATA
     MOV DS,AX
-              
-  
-    
-    MOV AH,9
-    LEA DX,MSG
+    MOV AH,09H
+    MOV DX,OFFSET MSG
     INT 21H
-          
-          
-          
-          
-          
     MOV AH,4CH
     INT 21H
-    MAIN ENDP 
-END MAIN
-    
-         
+CODE ENDS
+END START
